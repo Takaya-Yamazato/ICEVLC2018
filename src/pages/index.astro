@@ -1,0 +1,98 @@
+---
+// ここでインポートやメタデータの定義を行います
+const title = "2nd International Conference and Exhibition on Visible Light Communications 2018 (ICEVLC 2018)";
+const description = "ICEVLC 2018, presented by Visible Light Communications Association (VLCA) in Japan, offers a unique opportunity for researchers and developers...";
+
+// src/pages/index.astro のフロントマター（上部の --- の間）
+import { Image } from 'astro:assets';
+import bannerImage from '../assets/image/ICEVLC2018.jpg';
+
+// 既存のCSSを適用（パスはプロジェクト構成に合わせて調整してください）
+import '../styles/global.css'; 
+---
+
+<html lang="ja">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    
+    <link rel="stylesheet" href="/style.css" />
+</head>
+
+<body class="bg-slate-50 text-slate-800">
+
+<div class="w-full">
+    <Image 
+        src={bannerImage} 
+        alt="ICEVLC 2018 Banner" 
+        class="w-full h-auto block"
+    />
+</div>
+
+    <header class="max-w-4xl mx-auto p-6">
+        <ul class="fa-ul space-y-2">
+            <li class="text-orange-600 font-bold underline">
+                <i class="fa-li fa fa-check"></i>Submission deadline: October 15, 2017
+            </li>
+            <li>
+                <i class="fa-li fa fa-check"></i>Decision notification: November 15, 2017
+            </li>
+            <li>
+                <i class="fa-li fa fa-check"></i>Camera-ready and registration deadline: December 15, 2017
+            </li>
+            <li class="text-blue-600 hover:underline">
+                <i class="fa-li fa fa-file-pdf-o"></i>
+                <a href="/ICEVLC2018_CFP_6.pdf">Call for papers</a>
+            </li>
+        </ul>
+    </header>
+
+    <hr class="border-slate-300" />
+
+    <main class="max-w-4xl mx-auto p-6">
+        <blockquote class="bg-white p-8 rounded-lg shadow-sm border-l-4 border-slate-400">
+            <h2 class="text-2xl font-bold mb-4">Call for papers</h2>
+            <p class="mb-4 leading-relaxed">
+                “2nd International Conference and Exhibition on Visible Light Communications 2018 (ICEVLC 2018)”, presented by 
+                <a href="https://j-photonics.org/vlca/" target="_blank" class="text-blue-600 hover:underline">Visible Light Communications Association (VLCA)</a> 
+                in Japan, offers a unique opportunity for researchers and developers from academia and industry to share ideas about visible light communications (VLC).
+            </p>
+            
+            <p class="font-semibold mb-2">Topics of interest includes, but are not limited to:</p>
+            
+            <ul class="fa-ul space-y-1 ml-6">
+                {[
+                    "VLC transceiver design and optimization",
+                    "VLC link duplexing and multiple access techniques",
+                    "Modulation, coding and detection for VLC",
+                    "VLC using image sensor (Image sensor communication)",
+                    "Underwater VLC",
+                    "Location services using VLC",
+                    "VLC wireless sensor networks",
+                    "Optical wireless communications in 5G networks",
+                    "Vehicle-to-vehicle and vehicle-to-infrastructure VLC",
+                    "VLC for Internet of things (IoT)",
+                    "VLC for home/office/factory networks"
+                ].map((topic) => (
+                    <li><i class="fa-li fa fa-check text-green-600"></i>{topic}</li>
+                ))}
+            </ul>
+        </blockquote>
+    </main>
+
+    <hr class="border-slate-300" />
+
+    <footer class="max-w-4xl mx-auto p-6 text-center text-sm text-slate-500">
+        <p>
+            &nbsp;|&nbsp;<a href="https://j-photonics.org/vlca/" target="_blank" class="hover:text-blue-600">VLCA</a>
+            &nbsp;|&nbsp;<a href="https://yamazato.nuee.nagoya-u.ac.jp/en/Image-sensor-communication/" target="_blank" class="hover:text-blue-600">OWC'17</a>
+            &nbsp;|&nbsp;
+        </p>
+    </footer>
+
+</body>
+</html>
