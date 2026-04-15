@@ -1,17 +1,27 @@
 ---
-// src/layouts/Layout.astro
-interface Props {
-  title: string;
-}
-const { title } = Astro.props;
+// src/layouts/MainLayout.astro
+const {
+    title,
+    description = 'The 4th International Conference on Emerging VLSI Technologies and Architectures',
+} = Astro.props;
+import { Image } from 'astro:assets';
+import bannerImage from '../assets/image/ICEVLC2018.jpg';
+
+// 既存のCSSを適用（パスはプロジェクト構成に合わせて調整してください）
+import '../styles/global.css'; 
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
 ---
-<html lang="ja">
-  <head>
-    <meta charset="UTF-8" />
+
+<html lang="en">
     <title>{title}</title>
-    </head>
-  <body class="bg-slate-50">
-    <header>...構成要素...</header>
-    <slot /> <footer>...</footer>
+    <meta name="description" content={description} />
+    <Header />  
+    <main class="flex-grow">
+      <slot /> 
+    </main>
+    <Footer />
+
   </body>
 </html>

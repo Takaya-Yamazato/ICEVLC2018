@@ -1,0 +1,63 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import bannerImage from '../assets/image/ICEVLC2018.jpg';
+
+// 既存のCSSを適用（パスはプロジェクト構成に合わせて調整してください）
+import '../styles/global.css'; 
+
+// 画像フォルダをスキャンして自動取得
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/slides/*.{jpeg,jpg,png,gif}');
+const imagePaths = (await Promise.all(Object.values(images).map((img) => img()))).map((mod) => mod.default);
+
+const title = "Commemorative photos from ICEVLC2018 at Keio University";
+
+---
+<Layout title="Commemorative photos">
+
+<body class="bg-zinc-950 text-zinc-100 font-sans">
+
+    <header class="p-10 text-center">
+        <h1 class="text-3xl font-bold mb-2 tracking-tighter">{title}</h1>
+        <p class="text-zinc-500">Click a photo to enlarge</p>
+    </header>
+
+    <main class="max-w-6xl mx-auto p-4">
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="pswp-gallery">
+            {imagePaths.map((img) => (
+                <a 
+                    href={img.src} 
+                    data-pswp-width={img.width} 
+                    data-pswp-height={img.height} 
+                    target="_blank"
+                    class="group relative block overflow-hidden rounded-lg bg-zinc-900 aspect-square"
+                >
+                    <Image 
+                        src={img} 
+                        alt="Conference Photo" 
+                        width={400} 
+                        height={400}
+                        class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <span class="text-xs uppercase tracking-widest border border-white/40 px-2 py-1">View</span>
+                    </div>
+                </a>
+            ))}
+        </div>
+    </main>
+
+
+    <script>
+        import PhotoSwipeLightbox from 'photoswipe/lightbox';
+        import 'photoswipe/style.css';
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallery: '#pswp-gallery',
+            children: 'a',
+            // Astroの画像最適化を通した画像パスを使用
+            pswpModule: () => import('photoswipe')
+        });
+        lightbox.init();
+    </script>

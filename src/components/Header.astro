@@ -1,0 +1,83 @@
+---
+import HeaderLink from './HeaderLink.astro';
+const {
+    title,
+    description = '2nd International Conference and Exhibition on Visible Light Communications 2018 (ICEVLC 2018)',
+} = Astro.props;
+import { Image } from 'astro:assets';
+import bannerImage from '../assets/image/ICEVLC2018.jpg';
+---
+
+<header>
+	<nav>
+		<h2><a href="/">{title}</a></h2>
+	
+		<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+</head>
+
+
+
+<div class="w-full">
+    <Image 
+        src={bannerImage} 
+        alt="ICEVLC 2018 Banner" 
+        class="w-full h-auto block"
+    />
+
+ <div class="max-w-4xl mx-auto p-6">
+				<HeaderLink href="/index2">Home</HeaderLink>
+			<HeaderLink href="/photos">Commemorative photos</HeaderLink>
+			<a href="https://yamazato.nuee.nagoya-u.ac.jp/en/Image-sensor-communication/" class="hover:text-blue-600">Image Sensor Communication at Yamazato Lab.</a>
+
+</div>
+
+</div>
+
+	</nav>
+</header>
+<hr class="border-slate-300" />
+<style>
+	header {
+		margin: 0;
+		padding: 0 1em;
+		background: white;
+		box-shadow: 0 2px 8px rgba(var(--black), 5%);
+	}
+	h2 {
+		margin: 0;
+		font-size: 1em;
+	}
+
+	h2 a,
+	h2 a.active {
+		text-decoration: none;
+	}
+	nav {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+	nav a {
+		padding: 1em 0.5em;
+		color: var(--black);
+		border-bottom: 4px solid transparent;
+		text-decoration: none;
+	}
+	nav a.active {
+		text-decoration: none;
+		border-bottom-color: var(--accent);
+	}
+	.social-links,
+	.social-links a {
+		display: flex;
+	}
+	@media (max-width: 720px) {
+		.social-links {
+			display: none;
+		}
+	}
+</style>
