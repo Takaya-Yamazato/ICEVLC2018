@@ -1,7 +1,7 @@
 {
   "name": "icevlc2018-astro",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.9.1",
   "engines": {
     "node": ">=22.12.0"
   },
