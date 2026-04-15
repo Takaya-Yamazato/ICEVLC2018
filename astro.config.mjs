@@ -6,13 +6,15 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://yamazato.nuee.nagoya-u.ac.jp/icevlc2018', // サイトのURLを設定
-  base: '/icevlc2018', // リポジトリ名に合わせて設定
+  // siteはドメイン名のみを指定します（末尾のスラッシュは無しが推奨）
+  site: 'https://yamazato.nuee.nagoya-u.ac.jp', 
+  
+  // baseでサブディレクトリを指定します（最初と最後にスラッシュを入れるのが最も安全です）
+  base: '/icevlc2018/', 
 
   integrations: [react()],
 
   vite: {
     plugins: [tailwindcss()]
   }
-  
 });
